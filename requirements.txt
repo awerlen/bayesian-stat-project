@@ -3,3 +3,5 @@ scipy
 corner
 emcee
 dynasty
+tqdm
+zeus-mcmc
