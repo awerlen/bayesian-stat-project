@@ -3,7 +3,7 @@ import dynesty
 import matplotlib.pyplot as plt
 import numpy as np
 from dynesty import plotting as dyplot
-from himmelblau as himmelblau
+from himmelblau import himmelblau
 
 # define the prior transform function
 def prior_transform(uv):
@@ -17,10 +17,10 @@ def log_likelihood(x):
 ndim = 2
 
 # define the number of living points used
-n_live_points = 500
+# n_live_points = 500
 
 # define the sampler
-sampler = dynesty.DynamicNestedSampler(log_likelihood, prior_transform, ndim, n_live_points)
+sampler = dynesty.DynamicNestedSampler(log_likelihood, prior_transform, ndim)
 
 # run the sampler
 sampler.run_nested()
