@@ -3,8 +3,8 @@ import dynesty
 import matplotlib.pyplot as plt
 import numpy as np
 from dynesty import plotting as dyplot
-from himmelblau import himmelblau
-from rosenbrock import rosenbrock_3d
+from src.himmelblau import himmelblau
+from src.rosenbrock import rosenbrock_3d
 
 function = "himmelblau"
 path = f"results/NS/{function}"

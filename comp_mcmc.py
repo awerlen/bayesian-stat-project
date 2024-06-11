@@ -3,10 +3,13 @@ import matplotlib.pyplot as plt
 import corner
 import emcee
 import time
-from himmelblau import himmelblau
-from rosenbrock import rosenbrock_3d
-from stretch_move import stretch_move
+
+from src.himmelblau import himmelblau
+from src.rosenbrock import rosenbrock_3d
+from src.stretch_move import stretch_move
 import tqdm
+
+
 
 # File name
 function = "himmelblau"
