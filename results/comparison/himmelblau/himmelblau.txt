@@ -1,18 +1,17 @@
-Comparison costum vs emcee
-himmelblau function
+Himmelblau
 
-ndim: 2
-nwalkers: 40
-nsteps: 100000
-Stretch factor: 2
-Initial positions: -3.7551958090191464 - 3.9064279050326203
+MCMCwalkers: 40
+steps: 100000
+stretch move parameter: 1.5
+p0: -3.963353405432393,3.869612968658269
 
-Costum implementation 
-Autocorrelation times for each dimension: [100.19593756 104.78324078] 
-Mean acceptance rate: 0.20702 
-Runtime for 100000: 22.895251989364624 
+Autocorrelation times for each dimension: [49.41710936 46.06979666]
+Mean acceptance rate: 0.253966
+Runtime for 100000: 25.509196758270264
 
-Costum implementation 
-Autocorrelation times for each dimension: [73.37484936 73.07625854] 
-Mean acceptance rate: 0.23145775 
-Runtime for 100000: 17.1334867477417 
+Nested sampling
+livepoints: 500
+niter: 14312
+Log-evidence: -5.070742097034362 +/- 0.04983710536952246
+
+KL divergence: 0.5068762650539829
