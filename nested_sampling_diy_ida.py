@@ -18,7 +18,7 @@ def log_likelihood(points):
 def sample_nested_sampling(log_likelihood, prior, n_live, tol=0.01, n_max_iter=100000):
     # Sample the initial set of live points from the prior
     live_points = np.column_stack((prior.rvs(n_live), prior.rvs(n_live)))
-    
+
     # Get their log likelihoods
     log_L = log_likelihood(live_points)
     if not np.all(np.isfinite(log_L)):
@@ -107,7 +107,7 @@ prior = uniform(loc=-4, scale=8)
 
 # Call the nested sampling algorithm with the two-dimensional Himmelblau function
 log_Z, dead_points, weights = sample_nested_sampling(
-    log_likelihood, prior=prior, n_live=500, tol=1., n_max_iter=10000)
+    log_likelihood, prior=prior, n_live=500, tol=.5, n_max_iter=10000)
 
 
 weights_normalized = weights / np.sum(weights)
