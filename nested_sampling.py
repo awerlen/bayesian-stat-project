@@ -6,7 +6,7 @@ from dynesty import plotting as dyplot
 from himmelblau import himmelblau
 from rosenbrock import rosenbrock_3d
 
-function = "rosenbrock_3d"
+function = "himmelblau"
 path = f"results/NS/{function}"
 
 file_name = f"{path}/{function}.txt"
@@ -17,24 +17,21 @@ def prior_transform(uv):
 
 # define the log-likelihood function
 def log_likelihood(x):
-    return -rosenbrock_3d(x)
+    return -himmelblau(x)
 
-ndim = 3
+ndim = 2
 
 # define the number of living points used
-n_live_points = 500
-
 # define the number of dimensions
 f = open(file_name, "w")
 f.write("Nested Sampling\n")
 f.write(f"{function} function\n")
 f.write("\n")
 f.write(f"ndim: {ndim}\n")
-f.write(f"n_live_points: {n_live_points}\n")
 f.write("\n")
 
 # define the sampler
-sampler = dynesty.DynamicNestedSampler(log_likelihood, prior_transform, ndim, n_live_points)
+sampler = dynesty.DynamicNestedSampler(log_likelihood, prior_transform, ndim)
 
 # run the sampler
 sampler.run_nested()
@@ -48,10 +45,11 @@ f.write(f"Effective sample size: {results.eff}\n")
 
 # extract the samples and weights
 samples = results.samples
+
 weights = np.exp(results.logwt - results.logz[-1])
 
 # Plot the corner plot
-fig = corner.corner(samples, labels=['$x_1$', '$x_2$','$x_3$'])
+fig = corner.corner(samples, labels=['$x_1$', '$x_2$'])
 fig.savefig(f"{path}/{function}_corner_plot.png")
 
 # Plot a summary of the run.
