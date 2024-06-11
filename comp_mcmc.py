@@ -88,14 +88,29 @@ f.close()
 
 # Create figure and axes
 fig, axes = plt.subplots(2, 2, figsize=(10, 10))
-corner.corner(samples_costum.reshape(-1, ndim), bins=50, labels=["$x1$", "$x2$"], fig=fig, color="blue")
-corner.corner(samples_emcee.reshape(-1, ndim), bins=50, labels=["$x1$", "$x2$"], fig=fig, color="red")
+corner.corner(samples_costum.reshape(-1, ndim), bins=50, labels=["$x_1$", "$x_2$"], fig=fig, color="blue")
+corner.corner(samples_emcee.reshape(-1, ndim), bins=50, labels=["$x_1$", "$x_2$"], fig=fig, color="red")
 handles = [plt.Line2D([0], [0], color="blue", lw=2, label="Custom implementation"),
            plt.Line2D([0], [0], color="red", lw=2, label="emcee implementation")]
-fig.legend(handles=handles, loc="upper right")
+fig.legend(handles=handles, loc="upper right", frameon=False, fontsize=14)
+
+axes = np.array(fig.axes).reshape((2, 2))
+
+# x-axis
+for ax in axes[-1, :]:
+    ax.xaxis.label.set_fontsize(14)
+    ax.xaxis.label.set_position((0.5, -0.1))
+    #ax.tick_params(axis='x', direction='in', labelsize=14)
+    
+# y-axis
+for ax in axes[:, 0]:
+    ax.yaxis.label.set_fontsize(14)
+    ax.yaxis.label.set_position((-0.1, 0.5))
+    #ax.tick_params(axis='y', direction='in', labelsize=14)
 
 for ax in fig.axes:
-    ax.xaxis.label.set_size(12)
-    ax.yaxis.label.set_size(12)
+    ax.tick_params(axis='x', direction='in', labelsize=14)
+    ax.tick_params(axis='y', direction='in', labelsize=14)
 
+fig.tight_layout()
 fig.savefig(f"{path}/{function}_corner_comparison.pdf")
