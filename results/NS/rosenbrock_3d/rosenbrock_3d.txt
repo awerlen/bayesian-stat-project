@@ -1,0 +1,9 @@
+Nested Sampling
+rosenbrock_3d function
+
+ndim: 3
+
+Number of iterations: 15136
+Number of posterior samples: 15136
+Evidence: -9.70872536592064
+Effective sample size: 14.4814389590509

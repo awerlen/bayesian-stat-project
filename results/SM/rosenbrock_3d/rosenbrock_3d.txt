@@ -1,0 +1,18 @@
+Comparison costum vs emcee
+rosenbrock_3d function
+
+ndim: 3
+nwalkers: 40
+nsteps: 100000
+Stretch factor: 2
+Initial positions: -3.994014682369463 - 3.9979808650423205
+
+Costum implementation 
+Autocorrelation times for each dimension: [1994.49406852 1365.38535816 1622.39869248] 
+Mean acceptance rate: 0.28299175 
+Runtime for 100000: 24.371286153793335 
+
+Costum implementation 
+Autocorrelation times for each dimension: [954.77734653 565.334064   612.04831259] 
+Mean acceptance rate: 0.37403575 
+Runtime for 100000: 18.460257053375244 

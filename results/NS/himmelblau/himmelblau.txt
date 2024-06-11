@@ -1,0 +1,9 @@
+Nested Sampling
+himmelblau function
+
+ndim: 2
+
+Number of iterations: 14661
+Number of posterior samples: 14661
+Evidence: -5.178300671599835
+Effective sample size: 17.008712600206504
