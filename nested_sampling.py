@@ -6,20 +6,20 @@ from dynesty import plotting as dyplot
 from src.himmelblau import himmelblau
 from src.rosenbrock import rosenbrock_3d
 
-function = "himmelblau"
+function = "rosenbrock_3d"
 path = f"results/NS/{function}"
 
 file_name = f"{path}/{function}.txt"
 
 # define the prior transform function
 def prior_transform(uv):
-    return 8.0 * uv - 4.0
+    return 4 * uv - 2
 
 # define the log-likelihood function
 def log_likelihood(x):
-    return -himmelblau(x)
+    return -rosenbrock_3d(x)
 
-ndim = 2
+ndim = 3
 
 # define the number of living points used
 # define the number of dimensions
@@ -43,23 +43,40 @@ f.write(f"Number of posterior samples: {len(results.samples)}\n")
 f.write(f"Evidence: {results.logz[-1]}\n")
 f.write(f"Effective sample size: {results.eff}\n")
 
+plt.rcParams.update({'font.size': 14})
+
 # extract the samples and weights
 samples = results.samples
-
 weights = np.exp(results.logwt - results.logz[-1])
-
-# Plot the corner plot
-fig = corner.corner(samples, labels=['$x_1$', '$x_2$'])
-fig.savefig(f"{path}/{function}_corner_plot.png")
 
 # Plot a summary of the run.
 rfig, raxes = dyplot.runplot(results)
-rfig.savefig(f"{path}/{function}_run_plot.png")
+rfig.tight_layout()
+rfig.savefig(f"{path}/{function}_run_plot.pdf")
 
 # Plot traces and 1-D marginalized posteriors.
 tfig, taxes = dyplot.traceplot(results)
-tfig.savefig(f"{path}/{function}_trace_plot.png")
+tfig.tight_layout()
+tfig.savefig(f"{path}/{function}_trace_plot.pdf")
 
-# Plot the 2-D marginalized posteriors.
-cfig, caxes = dyplot.cornerplot(results)
-cfig.savefig(f"{path}/{function}_corner_plot.png")
+# Do Corner plot of results
+# Define labels for three dimensions
+labels = ["$x_1$", "$x_2$", "$x_3$"]
+
+# Create figure and axes for a 3x3 grid
+fig, axes = plt.subplots(3, 3, figsize=(10, 10))
+# cut of the first 100 samples
+samples = samples[1000:, :]
+corner.corner(samples, labels=labels, fig=fig, bins=50)
+
+# Adjust axes for the new grid
+axes = np.array(fig.axes).reshape((3, 3))
+
+# Adjust tick parameters
+for ax in fig.axes:
+    ax.tick_params(axis='x', direction='in', labelsize=14)
+    ax.tick_params(axis='y', direction='in', labelsize=14)
+
+# Ensure layout is tight and save the figure
+fig.tight_layout()
+fig.savefig(f"{path}/{function}_corner.pdf")
