@@ -4,15 +4,15 @@ himmelblau function
 ndim: 2
 nwalkers: 40
 nsteps: 100000
-Stretch factor: 2
-Initial positions: -3.9687606423688733 - 3.9764201255971026
+Stretch factor: 1.5
+Initial positions: -3.9625688562793657 - 3.9952298411746314
 
 Costum implementation 
-Autocorrelation times for each dimension: [292.56572453 677.57698658] 
-Mean acceptance rate: 0.18862525 
-Runtime for 100000: 26.24512004852295 
+Autocorrelation times for each dimension: [50.05755946 46.53899376] 
+Mean acceptance rate: 0.2538285 
+Runtime for 100000: 25.870850801467896 
 
-Costum implementation 
-Autocorrelation times for each dimension: [113.55152687 158.7936944 ] 
-Mean acceptance rate: 0.21632500000000002 
-Runtime for 100000: 17.862656116485596 
+emcee implementation 
+Autocorrelation times for each dimension: [47.75900869 43.22325093] 
+Mean acceptance rate: 0.2618545 
+Runtime for 100000: 17.283385038375854 
