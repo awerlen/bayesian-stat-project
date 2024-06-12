@@ -3,7 +3,7 @@ himmelblau function
 
 ndim: 2
 
-Number of iterations: 14470
-Number of posterior samples: 14470
-Evidence: -5.2437027923926935 +/- 0.05030718398382209
-Effective sample size: 20.661098022417363
+Number of iterations: 14725
+Number of posterior samples: 14725
+Evidence: -5.055001586739232 +/- 0.04884491556976701
+Effective sample size: 21.435018050541515

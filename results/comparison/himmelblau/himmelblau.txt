@@ -1,17 +1,18 @@
-Himmelblau
+himmelblau
 
-MCMCwalkers: 40
+MCMC 
+walkers: 40
 steps: 100000
 stretch move parameter: 1.5
-p0: -3.963353405432393,3.869612968658269
+p0: -3.8914765717013964,3.7232029942798253
 
-Autocorrelation times for each dimension: [49.41710936 46.06979666]
-Mean acceptance rate: 0.253966
-Runtime for 100000: 25.509196758270264
+Autocorrelation times for each dimension: [49.7184438  45.32593494]
+Mean acceptance rate: 0.259666
+Runtime for 100000: 25.41201400756836
 
 Nested sampling
 livepoints: 500
-niter: 14312
-Log-evidence: -5.070742097034362 +/- 0.04983710536952246
+niter: 14783
+Log-evidence: -5.1030656326217 +/- 0.049237657833998284
 
-KL divergence: 0.5068762650539829
+KL divergence: 0.5342338103734408

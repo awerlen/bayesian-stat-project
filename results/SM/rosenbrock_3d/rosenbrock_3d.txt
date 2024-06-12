@@ -5,14 +5,4 @@ ndim: 3
 nwalkers: 40
 nsteps: 150000
 Stretch factor: 2
-Initial positions: 0.013731710892413762 - 1.9875548692180143
-
-Costum implementation 
-Autocorrelation times for each dimension: [2209.48391274 1252.95658099 1497.86153724] 
-Mean acceptance rate: 0.2864161666666667 
-Runtime for 150000: 42.34779596328735 
-
-Costum implementation 
-Autocorrelation times for each dimension: [1023.97912558  656.59544387  807.63906832] 
-Mean acceptance rate: 0.37232183333333335 
-Runtime for 150000: 28.041742086410522 
+Initial positions: 0.013569024553277131 - 1.992052920570624
