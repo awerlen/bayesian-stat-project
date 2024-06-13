@@ -6,6 +6,10 @@ from dynesty import plotting as dyplot
 from src.himmelblau import himmelblau
 from src.rosenbrock import rosenbrock_3d
 
+# ---------------------------
+# Nested Sampling
+# ---------------------------
+
 function = "himmelblau"
 path = f"results/NS/{function}"
 
@@ -30,7 +34,7 @@ f.write("\n")
 f.write(f"ndim: {ndim}\n")
 f.write("\n")
 
-# define the sampler
+# initialize the sampler
 sampler = dynesty.DynamicNestedSampler(log_likelihood, prior_transform, ndim)
 
 # run the sampler
@@ -38,16 +42,22 @@ sampler.run_nested()
 results = sampler.results
 results.summary()
 
+# write results to file
 f.write(f"Number of iterations: {results.niter}\n")
 f.write(f"Number of posterior samples: {len(results.samples)}\n")
 f.write(f"Evidence: {results.logz[-1]} +/- {results.logzerr[-1]}\n")
 f.write(f"Effective sample size: {results.eff}\n")
 
+# change the font size of the plots
 plt.rcParams.update({'font.size': 14})
 
 # extract the samples and weights
 samples = results.samples
 weights = np.exp(results.logwt - results.logz[-1])
+
+# ---------------------------
+# Plot the results
+# ---------------------------
 
 # Plot a summary of the run.
 rfig, raxes = dyplot.runplot(results)
@@ -59,15 +69,13 @@ tfig, taxes = dyplot.traceplot(results)
 tfig.tight_layout()
 tfig.savefig(f"{path}/{function}_trace_plot.pdf")
 
-# Do Corner plot of results
-# Define labels for three dimensions
-labels = ["$x_1$", "$x_2$"]
 
-# Create figure and axes for a 3x3 grid
+# Corner plots
 fig, axes = plt.subplots(ndim, ndim, figsize=(5, 5))
-# cut of the first 100 samples
+
+# cut of the first 1000 samples
 samples = samples[1000:, :]
-corner.corner(samples, labels=labels, fig=fig, bins=50)
+corner.corner(samples, labels=["$x_1$", "$x_2$"], fig=fig, bins=50)
 
 # Adjust axes for the new grid
 axes = np.array(fig.axes).reshape((ndim, ndim))
