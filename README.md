@@ -1,7 +1,19 @@
-# Project Bayesian Statical Methods
-Project for the course Bayesian Statistical Methods and Data Analysis at ETHZ 
+# Self-Implemented Stretch Move Algorithm: A Comparative Analysis with `emcee` and `dynesty`
+
+Project for the Block-Course: 402-0738-10L Bayesian Statistical Methods and Data Analysis FS2024.
+
+Contributors: Aaron Werlen, Sylvlain Lambert, Olivier Jungo
 
 ---
+
+## Installation
+All necessary packages can be installed with:
+
+```bash
+pip install -r requirements.txt
+```
+---
+
 
 ## Basic Git Commands for Beginners
 
