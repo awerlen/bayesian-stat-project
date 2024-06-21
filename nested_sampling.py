@@ -63,7 +63,7 @@ weights = np.exp(results.logwt - results.logz[-1])
 # Plot the results
 # ---------------------------
 
-plt.rcParams.update({'font.size': 28})
+plt.rcParams.update({'font.size': 34})
 
 # Plot a summary of the run
 rfig, raxes = dyplot.runplot(results)
