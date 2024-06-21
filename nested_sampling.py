@@ -5,7 +5,7 @@ import numpy as np
 from dynesty import plotting as dyplot
 from src.himmelblau import himmelblau
 from src.rosenbrock import rosenbrock_3d
-
+import time
 # ---------------------------
 # Nested Sampling
 # ---------------------------
@@ -38,15 +38,19 @@ f.write("\n")
 sampler = dynesty.DynamicNestedSampler(log_likelihood, prior_transform, ndim)
 
 # run the sampler
+start_time = time.time()
 sampler.run_nested()
 results = sampler.results
 results.summary()
+end_time = time.time()
+
+delta_t = end_time - start_time
 
 # write results to file
 f.write(f"Number of iterations: {results.niter}\n")
-f.write(f"Number of posterior samples: {len(results.samples)}\n")
 f.write(f"Evidence: {results.logz[-1]} +/- {results.logzerr[-1]}\n")
 f.write(f"Effective sample size: {results.eff}\n")
+f.write(f"Run time: {delta_t} seconds\n")
 
 # change the font size of the plots
 plt.rcParams.update({'font.size': 14})
@@ -59,16 +63,35 @@ weights = np.exp(results.logwt - results.logz[-1])
 # Plot the results
 # ---------------------------
 
-# Plot a summary of the run.
+plt.rcParams.update({'font.size': 28})
+
+# Plot a summary of the run
 rfig, raxes = dyplot.runplot(results)
+for ax in np.atleast_1d(raxes):  # Ensure raxes is treated as an array, even if it contains a single element
+    ax.set_xlabel('-log $X$')
+
+raxes[3].set_ylabel('Evidence $Z$')
+
+# Adjust layout and save the figure
 rfig.tight_layout()
 rfig.savefig(f"{path}/{function}_run_plot.pdf")
 
+plt.rcParams.update({'font.size': 15})
+
 # Plot traces and 1-D marginalized posteriors.
 tfig, taxes = dyplot.traceplot(results)
-tfig.tight_layout()
-tfig.savefig(f"{path}/{function}_trace_plot.pdf")
 
+# Flatten the nested array structure
+flat_taxes = taxes.ravel()
+
+# Loop through each axis and set the x-axis label
+for ax in flat_taxes:
+    if isinstance(ax, plt.Axes):  # Ensure ax is a valid Axes object
+        ax.set_xlabel('-log $X$')
+
+tfig.tight_layout()
+
+tfig.savefig(f"{path}/{function}_trace_plot.pdf")
 
 # Corner plots
 fig, axes = plt.subplots(ndim, ndim, figsize=(5, 5))

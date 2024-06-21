@@ -112,8 +112,8 @@ corner.corner(samples_emcee_reshaped, bins=50, labels=labels, range=range, fig=f
 
 # Create legend handles
 handles = [
-    plt.Line2D([0], [0], color="blue", lw=2, label="Custom implementation"),
-    plt.Line2D([0], [0], color="red", lw=2, label="emcee implementation")
+    plt.Line2D([0], [0], color="blue", lw=2, label="SM (custom)"),
+    plt.Line2D([0], [0], color="red", lw=2, label="SM (emcee)")
 ]
 fig.legend(handles=handles, loc="upper right", frameon=False, fontsize=fontsize-1)
 
